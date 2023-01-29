@@ -17,12 +17,10 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.logout.LogoutFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -78,9 +76,11 @@ public class WebSecurityConfig {
 
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         daoAuthenticationProvider.setUserDetailsService(signinService);
+        daoAuthenticationProvider.setHideUserNotFoundExceptions(false);
+        // 존재하지 않는 ID 로그인과 틀린 비밀번호 경우 구분
 
         return new ProviderManager(daoAuthenticationProvider);
-    } // 회원 정보 수정 후 DB는 수정되지만 로그인 되어 있는 정보는 바뀌지 않기 때문에 필요
+    }
 
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationProcessingFilter(){

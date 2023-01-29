@@ -13,14 +13,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SigninService implements UserDetailsService {
     private final AdminRepository adminRepository;
-    private final JwtService jwtService;
 
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
         AdminEntity admin = adminRepository.findById(id);
 
         if(admin == null) {
-            throw new UsernameNotFoundException("존재하지 않는 아이디입니다.");
+            throw new UsernameNotFoundException("ID does not exist.");
         }
 
         return admin;
