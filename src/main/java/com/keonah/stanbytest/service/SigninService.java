@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SigninService implements UserDetailsService {
     private final AdminRepository adminRepository;
+    private final JwtService jwtService;
 
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {

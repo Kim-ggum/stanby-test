@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface AdminRepository extends JpaRepository<AdminEntity, Long> {
 
     AdminEntity findById(String id);
-    AdminEntity findByName(String name);
+    AdminEntity findByRefreshToken(String refreshToken);
 
     // 아이디, 이름 중복 검사
     boolean existsById(String id);

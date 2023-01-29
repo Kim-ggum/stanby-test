@@ -34,6 +34,13 @@ public class AdminEntity extends BaseEntity implements UserDetails {
     @Column(length = 30, nullable = false)
     private Role role;
 
+    @Column(length = 1000)
+    private String refreshToken;
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> collect = new ArrayList<>();
