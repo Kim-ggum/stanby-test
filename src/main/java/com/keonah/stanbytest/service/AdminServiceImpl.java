@@ -29,6 +29,7 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public void signUp(SignupDto signupDto) {
         AdminEntity adminEntity = dtoToEntity(signupDto);
+
         adminRepository.save(adminEntity);
     }
 

@@ -5,6 +5,8 @@ import com.keonah.stanbytest.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,6 +19,7 @@ public class AdminController {
 
     @PostMapping("")
     public ResponseEntity signup(@Valid @RequestBody SignupDto signupDto) {
+
         if(!adminService.checkIdDuplication(signupDto.getId()) && !adminService.checkNameDuplication(signupDto.getName())) {
             adminService.signUp(signupDto);
             return new ResponseEntity(signupDto,HttpStatus.OK);
