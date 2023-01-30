@@ -29,7 +29,7 @@ public class MemberController {
     }
 
     @PutMapping("/{no}")
-    public ResponseEntity updateMember(@PathVariable Long no, @Valid @RequestBody MemberUpdateDto memberUpdateDto) {
+    public ResponseEntity updateMember(@PathVariable String no, @Valid @RequestBody MemberUpdateDto memberUpdateDto) {
         if(!memberService.checkNameAndTeamDuplication(memberUpdateDto.getName(), memberUpdateDto.getTeam())) {
             memberService.updateMember(no, memberUpdateDto);
             return new ResponseEntity(memberUpdateDto,HttpStatus.OK);
@@ -40,10 +40,15 @@ public class MemberController {
     }
 
     @DeleteMapping("/{no}")
-    public ResponseEntity deleteMember(@PathVariable Long no) {
+    public ResponseEntity deleteMember(@PathVariable String no) {
             memberService.deleteMember(no);
 
             return new ResponseEntity(no,HttpStatus.OK);
 
+    }
+
+    @GetMapping("")
+    public ResponseEntity getMemberList() {
+        return new ResponseEntity (memberService.memberList(), HttpStatus.OK);
     }
 }

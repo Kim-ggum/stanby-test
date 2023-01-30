@@ -5,7 +5,10 @@ import com.keonah.stanbytest.dto.MemberUpdateDto;
 import com.keonah.stanbytest.entity.MemberEntity;
 import com.keonah.stanbytest.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -16,7 +19,7 @@ public class MemberServiceImpl implements MemberService{
     private MemberEntity dtoToEntity(MemberCreateDto memberCreateDto) {
 
         MemberEntity memberEntity = MemberEntity.builder()
-                    .id(memberCreateDto.getId())
+                    .no(memberCreateDto.getNo())
                     .name(memberCreateDto.getName())
                     .position(memberCreateDto.getPosition())
                     .team(memberCreateDto.getTeam())
@@ -36,11 +39,10 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public void updateMember(Long no, MemberUpdateDto memberUpdateDto) {
+    public void updateMember(String no, MemberUpdateDto memberUpdateDto) {
 
         MemberEntity memberEntity = MemberEntity.builder()
                 .no(no)
-                .id(memberRepository.findByNo(no).getId())
                 .name(memberUpdateDto.getName())
                 .position(memberUpdateDto.getPosition())
                 .team(memberUpdateDto.getTeam())
@@ -53,8 +55,13 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public void deleteMember(Long no) {
+    public void deleteMember(String no) {
         memberRepository.delete(memberRepository.findByNo(no));
+    }
+
+    @Override
+    public List<MemberEntity> memberList() {
+        return memberRepository.findAll(Sort.by("no"));
     }
 
     @Override

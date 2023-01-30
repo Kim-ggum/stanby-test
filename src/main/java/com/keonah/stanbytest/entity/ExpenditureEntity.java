@@ -6,23 +6,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "money")
+@Table(name = "expenditure")
 @Builder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MoneyEntity extends BaseEntity{
+public class ExpenditureEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long no;
-
-    @Column(length = 5, nullable = false)
-    private String member;
+    Long no;
 
     @Column(nullable = false)
-    private Long amount;
+    String purpose;
+
+    @Column(nullable = false)
+    Long amount;
+
+    @Column(nullable = false)
+    LocalDate date;
 
 }

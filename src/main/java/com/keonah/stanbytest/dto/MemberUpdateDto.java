@@ -7,7 +7,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Getter
-@RequiredArgsConstructor
 public class MemberUpdateDto {
 
     @NotBlank(message = "input name")
