@@ -4,6 +4,7 @@ import com.keonah.stanbytest.dto.MoneyInputDto;
 import com.keonah.stanbytest.dto.MoneyListDto;
 import com.keonah.stanbytest.entity.MemberEntity;
 import com.keonah.stanbytest.entity.MoneyEntity;
+import com.keonah.stanbytest.repository.ExpenditureRepository;
 import com.keonah.stanbytest.repository.MemberRepository;
 import com.keonah.stanbytest.repository.MoneyRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ public class MoneyServiceImpl implements MoneyService{
 
     private final MoneyRepository moneyRepository;
     private final MemberRepository memberRepository;
+    private final ExpenditureRepository expenditureRepository;
 
     @Override
     public void inputMoney(MoneyInputDto moneyInputDto) {
@@ -66,8 +68,8 @@ public class MoneyServiceImpl implements MoneyService{
     @Override
     public Long getMoney() {
 
-        Long money =  Long.valueOf(moneyRepository.findAll().stream().map(m -> m.getAmount()).mapToInt(Long::intValue).sum());
-
+        Long money =  Long.valueOf(moneyRepository.findAll().stream().map(m -> m.getAmount()).mapToInt(Long::intValue).sum()) -
+                Long.valueOf(expenditureRepository.findAll().stream().map(m -> m.getAmount()).mapToInt(Long::intValue).sum());
 
         return money;
     }
