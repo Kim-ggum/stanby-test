@@ -1,10 +1,8 @@
 package com.keonah.stanbytest.service;
 
 import com.keonah.stanbytest.dto.MemberCreateDto;
-import com.keonah.stanbytest.dto.SignupDto;
-import com.keonah.stanbytest.entity.AdminEntity;
+import com.keonah.stanbytest.dto.MemberUpdateDto;
 import com.keonah.stanbytest.entity.MemberEntity;
-import com.keonah.stanbytest.entity.Role;
 import com.keonah.stanbytest.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,13 +14,14 @@ public class MemberServiceImpl implements MemberService{
     private final MemberRepository memberRepository;
 
     private MemberEntity dtoToEntity(MemberCreateDto memberCreateDto) {
+
         MemberEntity memberEntity = MemberEntity.builder()
-                .id(memberCreateDto.getId())
-                .name(memberCreateDto.getName())
-                .position(memberCreateDto.getPosition())
-                .team(memberCreateDto.getTeam())
-                .joinDate(memberCreateDto.getJoinDate())
-                .build();
+                    .id(memberCreateDto.getId())
+                    .name(memberCreateDto.getName())
+                    .position(memberCreateDto.getPosition())
+                    .team(memberCreateDto.getTeam())
+                    .joinDate(memberCreateDto.getJoinDate())
+                    .build();
 
         return memberEntity;
     }
@@ -34,6 +33,23 @@ public class MemberServiceImpl implements MemberService{
 
         memberRepository.save(memberEntity);
 
+    }
+
+    @Override
+    public void updateMember(MemberUpdateDto memberUpdateDto) {
+
+        MemberEntity memberEntity = MemberEntity.builder()
+                .no(memberRepository.findById(memberUpdateDto.getId()).getNo())
+                .id(memberUpdateDto.getId())
+                .name(memberUpdateDto.getName())
+                .position(memberUpdateDto.getPosition())
+                .team(memberUpdateDto.getTeam())
+                .joinDate(memberUpdateDto.getJoinDate())
+                .build();
+
+        // 사원 번호와 입사일 수정 불가능하게
+
+       memberRepository.save(memberEntity);
     }
 
     @Override
