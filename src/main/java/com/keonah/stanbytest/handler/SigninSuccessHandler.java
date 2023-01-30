@@ -3,7 +3,6 @@ package com.keonah.stanbytest.handler;
 import com.keonah.stanbytest.entity.AdminEntity;
 import com.keonah.stanbytest.repository.AdminRepository;
 import com.keonah.stanbytest.service.JwtService;
-import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
