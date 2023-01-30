@@ -40,7 +40,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if(refreshToken != null && jwtService.validateToken(refreshToken)){
             checkRefreshTokenAndRecreateAccessToken(response, refreshToken);
-            return;
         }
 
         checkAccessTokenAndAuthentication(request, response, filterChain);
@@ -96,6 +95,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if(adminEntity != null) {
             jwtService.setAccessTokenHeader(response, jwtService.createAccessToken(adminEntity.getUsername()));
         }
-
     }
 }

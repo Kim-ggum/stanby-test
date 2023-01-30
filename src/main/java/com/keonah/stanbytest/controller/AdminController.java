@@ -29,11 +29,4 @@ public class AdminController {
 
     }
 
-    @GetMapping("/blank")
-    public ResponseEntity blank() {
-
-            return new ResponseEntity(HttpStatus.CONFLICT);
-
-    }
-
 }
