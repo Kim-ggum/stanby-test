@@ -5,7 +5,7 @@ import com.keonah.stanbytest.dto.MemberUpdateDto;
 
 public interface MemberService {
     void createMember(MemberCreateDto memberCreateDto);
-    void updateMember(MemberUpdateDto memberUpdateDto);
+    void updateMember(Long no, MemberUpdateDto memberUpdateDto);
 
     boolean checkNameAndTeamDuplication(String name, String team);
 }

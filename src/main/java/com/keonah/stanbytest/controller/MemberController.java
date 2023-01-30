@@ -28,10 +28,10 @@ public class MemberController {
 
     }
 
-    @PutMapping("")
-    public ResponseEntity updateMember(@Valid @RequestBody MemberUpdateDto memberUpdateDto) {
+    @PutMapping("/{no}")
+    public ResponseEntity updateMember(@PathVariable Long no, @Valid @RequestBody MemberUpdateDto memberUpdateDto) {
         if(!memberService.checkNameAndTeamDuplication(memberUpdateDto.getName(), memberUpdateDto.getTeam())) {
-            memberService.updateMember(memberUpdateDto);
+            memberService.updateMember(no, memberUpdateDto);
             return new ResponseEntity(memberUpdateDto,HttpStatus.OK);
         } else {
             return new ResponseEntity(memberUpdateDto,HttpStatus.CONFLICT);

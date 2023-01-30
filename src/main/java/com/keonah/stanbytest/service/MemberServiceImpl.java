@@ -36,15 +36,15 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public void updateMember(MemberUpdateDto memberUpdateDto) {
+    public void updateMember(Long no, MemberUpdateDto memberUpdateDto) {
 
         MemberEntity memberEntity = MemberEntity.builder()
-                .no(memberRepository.findById(memberUpdateDto.getId()).getNo())
-                .id(memberUpdateDto.getId())
+                .no(no)
+                .id(memberRepository.findByNo(no).getId())
                 .name(memberUpdateDto.getName())
                 .position(memberUpdateDto.getPosition())
                 .team(memberUpdateDto.getTeam())
-                .joinDate(memberUpdateDto.getJoinDate())
+                .joinDate(memberRepository.findByNo(no).getJoinDate())
                 .build();
 
         // 사원 번호와 입사일 수정 불가능하게
