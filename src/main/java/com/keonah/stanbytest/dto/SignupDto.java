@@ -8,7 +8,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Getter
-@RequiredArgsConstructor
 public class SignupDto {
     @NotBlank(message = "아이디로 사용할 이메일을 입력해주세요.")
     @Email(message = "input email")

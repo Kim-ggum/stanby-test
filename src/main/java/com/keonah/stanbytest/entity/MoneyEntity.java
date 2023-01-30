@@ -17,13 +17,12 @@ public class MoneyEntity extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long no;
+    private Long no;
 
-    @ManyToOne(cascade = CascadeType.MERGE, targetEntity = MemberEntity.class)
-    @JoinColumn(name = "member_no", nullable = false)
-    private long member;
+    @Column(length = 5, nullable = false)
+    private String member;
 
     @Column(nullable = false)
-    private long amount;
+    private Long amount;
 
 }

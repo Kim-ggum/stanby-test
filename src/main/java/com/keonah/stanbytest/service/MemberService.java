@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface MemberService {
     void createMember(MemberCreateDto memberCreateDto);
-    void updateMember(Long no, MemberUpdateDto memberUpdateDto);
-    void deleteMember(Long no);
+    void updateMember(String no, MemberUpdateDto memberUpdateDto);
+    void deleteMember(String no);
 
     List<MemberEntity> memberList();
 
