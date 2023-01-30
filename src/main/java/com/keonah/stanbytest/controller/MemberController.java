@@ -2,6 +2,7 @@ package com.keonah.stanbytest.controller;
 
 import com.keonah.stanbytest.dto.MemberCreateDto;
 import com.keonah.stanbytest.dto.MemberUpdateDto;
+import com.keonah.stanbytest.repository.MemberRepository;
 import com.keonah.stanbytest.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,10 +17,11 @@ import javax.validation.Valid;
 public class MemberController {
 
     private final MemberService memberService;
+    private final MemberRepository memberRepository;
 
     @PostMapping("")
     public ResponseEntity createMember(@Valid @RequestBody MemberCreateDto memberCreateDto) {
-        if(!memberService.checkNameAndTeamDuplication(memberCreateDto.getName(), memberCreateDto.getTeam())) {
+        if(!memberService.checkNameAndTeamDuplication(memberCreateDto.getName(), memberCreateDto.getTeam()) && !memberRepository.existsByNo(memberCreateDto.getNo())) {
             memberService.createMember(memberCreateDto);
             return new ResponseEntity(memberCreateDto,HttpStatus.OK);
         } else {

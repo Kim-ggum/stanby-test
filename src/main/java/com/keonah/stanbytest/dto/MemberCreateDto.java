@@ -7,13 +7,14 @@ import javax.persistence.Column;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Getter
 public class MemberCreateDto {
 
     @NotBlank(message = "input id")
-    @Size(min=5, max=5)
+    @Pattern(regexp = "[0-9]{5}")
     private String no; // 사원번호
 
     @NotBlank(message = "input name")
