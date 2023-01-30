@@ -2,16 +2,14 @@ package com.keonah.stanbytest.controller;
 
 import com.keonah.stanbytest.dto.MemberCreateDto;
 import com.keonah.stanbytest.dto.MoneyInputDto;
+import com.keonah.stanbytest.dto.MoneyListDto;
 import com.keonah.stanbytest.entity.MemberEntity;
 import com.keonah.stanbytest.repository.MemberRepository;
 import com.keonah.stanbytest.service.MoneyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -35,6 +33,16 @@ public class MoneyController {
         moneyService.inputMoney(moneyInputDto);
         return new ResponseEntity(moneyInputDto,HttpStatus.CREATED);
 
+    }
+
+    @GetMapping("")
+    public ResponseEntity getMoneyList(@Valid @RequestBody MoneyListDto moneyListDto) {
+        return new ResponseEntity(moneyService.getMoneyList(moneyListDto), HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity getMoney() {
+        return new ResponseEntity(moneyService.getMoney(), HttpStatus.OK);
     }
 
 
