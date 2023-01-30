@@ -53,6 +53,11 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
+    public void deleteMember(Long no) {
+        memberRepository.delete(memberRepository.findByNo(no));
+    }
+
+    @Override
     public boolean checkNameAndTeamDuplication(String name, String team) {
         return  memberRepository.existsByNameAndTeam(name, team);
     }
