@@ -46,4 +46,9 @@ public class MemberController {
             return new ResponseEntity(no,HttpStatus.OK);
 
     }
+
+    @GetMapping("")
+    public ResponseEntity getMemberList() {
+        return new ResponseEntity (memberService.memberList(), HttpStatus.OK);
+    }
 }

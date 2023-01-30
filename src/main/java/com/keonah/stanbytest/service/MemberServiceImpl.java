@@ -5,7 +5,10 @@ import com.keonah.stanbytest.dto.MemberUpdateDto;
 import com.keonah.stanbytest.entity.MemberEntity;
 import com.keonah.stanbytest.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -55,6 +58,11 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public void deleteMember(Long no) {
         memberRepository.delete(memberRepository.findByNo(no));
+    }
+
+    @Override
+    public List<MemberEntity> memberList() {
+        return memberRepository.findAll(Sort.by("id"));
     }
 
     @Override
