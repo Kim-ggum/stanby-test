@@ -2,6 +2,7 @@ package com.keonah.stanbytest.repository;
 
 import com.keonah.stanbytest.entity.ExpenditureEntity;
 import com.keonah.stanbytest.entity.MoneyEntity;
+import com.keonah.stanbytest.mapping.ExpenditureInfoMapping;
 import org.springframework.data.domain.Auditable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,5 +18,5 @@ public interface ExpenditureRepository extends JpaRepository<ExpenditureEntity, 
 
     ExpenditureEntity findTopByOrderByDate();
 
-    Page<ExpenditureEntity> findAllByDateBetween(LocalDate startDate, LocalDate endDate, Pageable pageable);
+    Page<ExpenditureInfoMapping> findAllByDateBetween(LocalDate startDate, LocalDate endDate, Pageable pageable);
 }
