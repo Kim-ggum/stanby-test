@@ -27,7 +27,7 @@ public class MemberCreateDto {
     private String team; // 부서명
 
     @NotBlank(message = "input joinDate")
-    @Size(min = 10, max = 10)
+    @Pattern(regexp = "(19|20)\\d{2}\\.((11|12)|(0?(\\d)))\\.(30|31|((0|1|2)?\\d))")
     private String joinDate;
 
 }
