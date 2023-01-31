@@ -16,6 +16,7 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 public class SigninSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+
     private final JwtService jwtService;
     private final AdminRepository adminRepository;
 
@@ -41,4 +42,5 @@ public class SigninSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         response.getWriter().write("로그인 성공.");
     }
+
 }

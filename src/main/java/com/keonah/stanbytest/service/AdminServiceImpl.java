@@ -42,4 +42,5 @@ public class AdminServiceImpl implements AdminService{
     public boolean checkNameDuplication(String name) {
         return adminRepository.existsByName(name);
     }
+
 }
