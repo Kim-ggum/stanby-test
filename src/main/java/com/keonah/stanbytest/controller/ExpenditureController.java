@@ -23,7 +23,7 @@ public class ExpenditureController {
     @PostMapping("")
     public ResponseEntity inputExpenditure(@Valid @RequestBody ExpenditureDto expenditureDto) {
         if(moneyService.getMoney() < expenditureDto.getAmount()) {
-            return new ResponseEntity("Exceed the money you have.",HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("잔액보다 큰 금액입니다.",HttpStatus.BAD_REQUEST);
         }
 
         expenditureService.inputExpenditure(expenditureDto);

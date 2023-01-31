@@ -29,7 +29,7 @@ public class MoneyController {
         MemberEntity memberEntity = memberRepository.findByNo(moneyInputDto.getMember());
 
         if(memberEntity == null) {
-            return new ResponseEntity("can not found member", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("존재하지 않는 회원입니다.", HttpStatus.BAD_REQUEST);
         }
 
         moneyService.inputMoney(moneyInputDto);

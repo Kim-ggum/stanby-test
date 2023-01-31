@@ -22,9 +22,9 @@ public class AdminController {
 
         if(!adminService.checkIdDuplication(signupDto.getId()) && !adminService.checkNameDuplication(signupDto.getName())) {
             adminService.signUp(signupDto);
-            return new ResponseEntity(signupDto,HttpStatus.OK);
+            return new ResponseEntity(signupDto,HttpStatus.CREATED);
         } else {
-            return new ResponseEntity(signupDto,HttpStatus.CONFLICT);
+            return new ResponseEntity("이미 존재하는 ID입니다.",HttpStatus.CONFLICT);
         }
 
     }
