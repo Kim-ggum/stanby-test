@@ -19,6 +19,6 @@ public class BaseEntity {
     @CreatedDate
     @DateTimeFormat(pattern = "yyyy.MM.dd")
     @Column(updatable = false)
-    private LocalDate createdDate;
+    private LocalDate createdDate; // 등록 일시
 
 }
