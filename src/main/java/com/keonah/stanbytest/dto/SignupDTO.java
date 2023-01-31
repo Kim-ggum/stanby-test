@@ -8,7 +8,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Getter
-public class SignupDto {
+public class SignupDTO {
+
+    // 관리자 회원 가입을 위한 DTO
     @NotBlank(message = "아이디로 사용할 이메일을 입력해주세요.")
     @Email(message = "이메일 형식으로 입력해주세요.")
     private String id;

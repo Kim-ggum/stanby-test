@@ -1,6 +1,6 @@
 package com.keonah.stanbytest.service;
 
-import com.keonah.stanbytest.dto.SignupDto;
+import com.keonah.stanbytest.dto.SignupDTO;
 import com.keonah.stanbytest.entity.AdminEntity;
 import com.keonah.stanbytest.entity.Role;
 import com.keonah.stanbytest.repository.AdminRepository;
@@ -15,7 +15,7 @@ public class AdminServiceImpl implements AdminService{
     private final AdminRepository adminRepository;
     private final PasswordEncoder passwordEncoder;
 
-    private AdminEntity dtoToEntity(SignupDto signupDto) {
+    private AdminEntity dtoToEntity(SignupDTO signupDto) {
         AdminEntity adminEntity = AdminEntity.builder()
                 .id(signupDto.getId())
                 .pw(passwordEncoder.encode(signupDto.getPw()))
@@ -27,7 +27,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public void signUp(SignupDto signupDto) {
+    public void signUp(SignupDTO signupDto) {
         AdminEntity adminEntity = dtoToEntity(signupDto);
 
         adminRepository.save(adminEntity);

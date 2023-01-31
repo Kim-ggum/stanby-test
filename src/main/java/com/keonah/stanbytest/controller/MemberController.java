@@ -1,7 +1,7 @@
 package com.keonah.stanbytest.controller;
 
-import com.keonah.stanbytest.dto.MemberCreateDto;
-import com.keonah.stanbytest.dto.MemberUpdateDto;
+import com.keonah.stanbytest.dto.MemberCreateDTO;
+import com.keonah.stanbytest.dto.MemberUpdateDTO;
 import com.keonah.stanbytest.repository.MemberRepository;
 import com.keonah.stanbytest.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class MemberController {
 
     // 회원 추가 (POST /members)
     @PostMapping("")
-    public ResponseEntity createMember(@Valid @RequestBody MemberCreateDto memberCreateDto) {
+    public ResponseEntity createMember(@Valid @RequestBody MemberCreateDTO memberCreateDto) {
         if(!memberService.checkNameAndTeamDuplication(memberCreateDto.getName(), memberCreateDto.getTeam())) {
             if(!memberRepository.existsByNo(memberCreateDto.getNo())) {
                 memberService.createMember(memberCreateDto);
@@ -37,7 +37,7 @@ public class MemberController {
 
     // 회원 정보 수정 (PUT /members/{no})
     @PutMapping("/{no}")
-    public ResponseEntity updateMember(@PathVariable String no, @Valid @RequestBody MemberUpdateDto memberUpdateDto) {
+    public ResponseEntity updateMember(@PathVariable String no, @Valid @RequestBody MemberUpdateDTO memberUpdateDto) {
         if(!memberService.checkNameAndTeamDuplication(memberUpdateDto.getName(), memberUpdateDto.getTeam())) {
             memberService.updateMember(no, memberUpdateDto);
             return new ResponseEntity(memberUpdateDto,HttpStatus.OK);

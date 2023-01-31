@@ -1,7 +1,7 @@
 package com.keonah.stanbytest.service;
 
-import com.keonah.stanbytest.dto.MemberCreateDto;
-import com.keonah.stanbytest.dto.MemberUpdateDto;
+import com.keonah.stanbytest.dto.MemberCreateDTO;
+import com.keonah.stanbytest.dto.MemberUpdateDTO;
 import com.keonah.stanbytest.entity.MemberEntity;
 import com.keonah.stanbytest.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class MemberServiceImpl implements MemberService{
 
     private final MemberRepository memberRepository;
 
-    private MemberEntity dtoToEntity(MemberCreateDto memberCreateDto) {
+    private MemberEntity dtoToEntity(MemberCreateDTO memberCreateDto) {
 
         MemberEntity memberEntity = MemberEntity.builder()
                     .no(memberCreateDto.getNo())
@@ -30,7 +30,7 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public void createMember(MemberCreateDto memberCreateDto) {
+    public void createMember(MemberCreateDTO memberCreateDto) {
 
         MemberEntity memberEntity = dtoToEntity(memberCreateDto);
 
@@ -39,7 +39,7 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public void updateMember(String no, MemberUpdateDto memberUpdateDto) {
+    public void updateMember(String no, MemberUpdateDTO memberUpdateDto) {
 
         MemberEntity memberEntity = MemberEntity.builder()
                 .no(no)

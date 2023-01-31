@@ -1,8 +1,8 @@
 package com.keonah.stanbytest.service;
 
 import com.keonah.stanbytest.mapping.MoneyInfoMapping;
-import com.keonah.stanbytest.dto.MoneyInputDto;
-import com.keonah.stanbytest.dto.MoneyListDto;
+import com.keonah.stanbytest.dto.MoneyInputDTO;
+import com.keonah.stanbytest.dto.MoneyListDTO;
 import com.keonah.stanbytest.entity.MemberEntity;
 import com.keonah.stanbytest.entity.MoneyEntity;
 import com.keonah.stanbytest.repository.ExpenditureRepository;
@@ -25,7 +25,7 @@ public class MoneyServiceImpl implements MoneyService{
     private final ExpenditureRepository expenditureRepository;
 
     @Override
-    public void inputMoney(MoneyInputDto moneyInputDto) {
+    public void inputMoney(MoneyInputDTO moneyInputDto) {
         MemberEntity memberEntity = memberRepository.findByNo(moneyInputDto.getMember());
 
         MoneyEntity moneyEntity = MoneyEntity.builder()
@@ -37,7 +37,7 @@ public class MoneyServiceImpl implements MoneyService{
     }
 
     @Override
-    public Page<MoneyInfoMapping> getMoneyList(MoneyListDto moneyListDto, Pageable pageable) {
+    public Page<MoneyInfoMapping> getMoneyList(MoneyListDTO moneyListDto, Pageable pageable) {
 
         LocalDate startDate;
         LocalDate endDate;

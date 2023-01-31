@@ -1,7 +1,7 @@
 package com.keonah.stanbytest.service;
 
-import com.keonah.stanbytest.dto.ExpenditureDto;
-import com.keonah.stanbytest.dto.ExpenditureListDto;
+import com.keonah.stanbytest.dto.ExpenditureDTO;
+import com.keonah.stanbytest.dto.ExpenditureListDTO;
 import com.keonah.stanbytest.entity.ExpenditureEntity;
 import com.keonah.stanbytest.mapping.ExpenditureInfoMapping;
 import com.keonah.stanbytest.repository.ExpenditureRepository;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +20,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
     private final ExpenditureRepository expenditureRepository;
 
     @Override
-    public void inputExpenditure(ExpenditureDto expenditureDto) {
+    public void inputExpenditure(ExpenditureDTO expenditureDto) {
         ExpenditureEntity expenditureEntity = ExpenditureEntity.builder()
                 .purpose(expenditureDto.getPurpose())
                 .amount(expenditureDto.getAmount())
@@ -32,7 +31,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
     }
 
     @Override
-    public Page<ExpenditureInfoMapping> getExpenditureList(ExpenditureListDto expenditureListDto, Pageable pageable) {
+    public Page<ExpenditureInfoMapping> getExpenditureList(ExpenditureListDTO expenditureListDto, Pageable pageable) {
         LocalDate startDate;
         LocalDate endDate;
 

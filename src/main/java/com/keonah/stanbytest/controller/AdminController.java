@@ -1,12 +1,10 @@
 package com.keonah.stanbytest.controller;
 
-import com.keonah.stanbytest.dto.SignupDto;
+import com.keonah.stanbytest.dto.SignupDTO;
 import com.keonah.stanbytest.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,7 +17,7 @@ public class AdminController {
 
     // 관리자 계정 회원가입 (POST /admins)
     @PostMapping("")
-    public ResponseEntity signup(@Valid @RequestBody SignupDto signupDto) {
+    public ResponseEntity signup(@Valid @RequestBody SignupDTO signupDto) {
 
         if(!adminService.checkIdDuplication(signupDto.getId()) && !adminService.checkNameDuplication(signupDto.getName())) {
             adminService.signUp(signupDto);

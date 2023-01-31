@@ -1,7 +1,7 @@
 package com.keonah.stanbytest.controller;
 
-import com.keonah.stanbytest.dto.ExpenditureDto;
-import com.keonah.stanbytest.dto.ExpenditureListDto;
+import com.keonah.stanbytest.dto.ExpenditureDTO;
+import com.keonah.stanbytest.dto.ExpenditureListDTO;
 import com.keonah.stanbytest.service.ExpenditureService;
 import com.keonah.stanbytest.service.MoneyService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ public class ExpenditureController {
 
     // 회비 사용내역 저장 (POST /expenditure)
     @PostMapping("")
-    public ResponseEntity inputExpenditure(@Valid @RequestBody ExpenditureDto expenditureDto) {
+    public ResponseEntity inputExpenditure(@Valid @RequestBody ExpenditureDTO expenditureDto) {
         if(moneyService.getMoney() < expenditureDto.getAmount()) {
             return new ResponseEntity("잔액보다 큰 금액입니다.",HttpStatus.BAD_REQUEST);
         }
@@ -35,7 +35,7 @@ public class ExpenditureController {
 
     // 회비 사용내역 조회 (GET /expenditure)
     @GetMapping("")
-    public ResponseEntity getExpenditureList(@Valid @RequestBody ExpenditureListDto expenditureListDto, Pageable pageable) {
+    public ResponseEntity getExpenditureList(@Valid @RequestBody ExpenditureListDTO expenditureListDto, Pageable pageable) {
 
         return new ResponseEntity(expenditureService.getExpenditureList(expenditureListDto, pageable), HttpStatus.OK);
 

@@ -7,8 +7,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Getter
-public class ExpenditureDto {
+public class ExpenditureDTO {
 
+    // 회비 사용 내역 저장을 위한 DTO
     @NotBlank(message = "목적을 입력해주세요.")
     private String purpose;
 
