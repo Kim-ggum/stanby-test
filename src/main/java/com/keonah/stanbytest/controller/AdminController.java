@@ -19,11 +19,15 @@ public class AdminController {
     @PostMapping("")
     public ResponseEntity signup(@Valid @RequestBody SignupDTO signupDto) {
 
-        if(!adminService.checkIdDuplication(signupDto.getId()) && !adminService.checkNameDuplication(signupDto.getName())) {
+        if (adminService.checkIdDuplication(signupDto.getId()) && adminService.checkNameDuplication(signupDto.getName())) {
+            return new ResponseEntity("이미 존재하는 ID와 이름 입니다.",HttpStatus.CONFLICT);
+        } else if (adminService.checkIdDuplication(signupDto.getId())){
+            return new ResponseEntity("이미 존재하는 ID입니다.",HttpStatus.CONFLICT);
+        } else if (adminService.checkNameDuplication(signupDto.getName())){
+            return new ResponseEntity("이미 존재하는 이름입니다.",HttpStatus.CONFLICT);
+        } else {
             adminService.signUp(signupDto);
             return new ResponseEntity(signupDto,HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity("이미 존재하는 ID입니다.",HttpStatus.CONFLICT);
         }
 
     }

@@ -15,4 +15,5 @@ public interface MemberService {
     List<MemberEntity> memberList();
 
     boolean checkNameAndTeamDuplication(String name, String team);
+
 }
