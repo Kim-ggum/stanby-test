@@ -19,4 +19,5 @@ public interface ExpenditureRepository extends JpaRepository<ExpenditureEntity, 
     ExpenditureEntity findTopByOrderByDate();
 
     Page<ExpenditureInfoMapping> findAllByDateBetween(LocalDate startDate, LocalDate endDate, Pageable pageable);
+
 }

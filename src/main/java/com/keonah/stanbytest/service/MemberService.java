@@ -7,6 +7,7 @@ import com.keonah.stanbytest.entity.MemberEntity;
 import java.util.List;
 
 public interface MemberService {
+
     void createMember(MemberCreateDTO memberCreateDto);
     void updateMember(String no, MemberUpdateDTO memberUpdateDto);
     void deleteMember(String no);

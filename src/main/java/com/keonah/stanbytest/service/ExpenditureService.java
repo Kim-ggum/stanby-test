@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 public interface ExpenditureService {
 
     void inputExpenditure(ExpenditureDTO expenditureDto);
+
     Page<ExpenditureInfoMapping> getExpenditureList(ExpenditureListDTO expenditureListDto, Pageable pageable);
 
 }

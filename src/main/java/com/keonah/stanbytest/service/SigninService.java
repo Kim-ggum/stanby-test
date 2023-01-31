@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class SigninService implements UserDetailsService {
+
     private final AdminRepository adminRepository;
 
     @Override
@@ -24,4 +25,5 @@ public class SigninService implements UserDetailsService {
 
         return admin;
     }
+
 }

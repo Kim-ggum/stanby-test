@@ -13,4 +13,5 @@ public interface MoneyService {
     Page<MoneyInfoMapping> getMoneyList(MoneyListDTO moneyListDto, Pageable pageable);
 
     Long getMoney();
+
 }

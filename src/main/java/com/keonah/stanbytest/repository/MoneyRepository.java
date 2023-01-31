@@ -15,7 +15,6 @@ public interface MoneyRepository extends JpaRepository<MoneyEntity, Long> {
     MoneyEntity findTopByOrderByCreatedDate();
 
     Page<MoneyInfoMapping> findAllByCreatedDateBetweenAndMember(LocalDate startDate, LocalDate endDate, String member, Pageable pageable);
-
     Page<MoneyInfoMapping> findAllByCreatedDateBetween(LocalDate startDate, LocalDate endDate, Pageable pageable);
 
 }
