@@ -24,12 +24,15 @@ public class SigninFailureHandler extends SimpleUrlAuthenticationFailureHandler 
 
         String message;
 
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/plain; charset=UTF-8");
+
         if (exception instanceof UsernameNotFoundException) {
-            message = "ID does not exist.";
+            message = "등록된 계정이 아닙니다.";
         } else if (exception instanceof InternalAuthenticationServiceException) {
             message = "내부 시스템 문제로 로그인 요청을 처리할 수 없습니다.";
         } else if(exception instanceof BadCredentialsException) {
-            message = "Wrong password.";
+            message = "잘못된 패스워드입니다.";
         } else if (exception instanceof AuthenticationCredentialsNotFoundException) {
             message = "인증 요청이 거부되었습니다.";
         } else {

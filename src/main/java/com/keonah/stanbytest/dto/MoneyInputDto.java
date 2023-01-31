@@ -9,10 +9,10 @@ import javax.validation.constraints.NotNull;
 @Getter
 public class MoneyInputDto {
 
-    @NotBlank(message = "input member")
+    @NotBlank(message = "사원번호를 입력해주세요.")
     private String member;
 
-    @NotNull(message = "input amount")
+    @NotNull(message = "금액을 입력해주세요.")
     private Long amount;
 
 }

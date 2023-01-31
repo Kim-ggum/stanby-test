@@ -9,13 +9,13 @@ import javax.validation.constraints.Size;
 @Getter
 public class MemberUpdateDto {
 
-    @NotBlank(message = "input name")
+    @NotBlank(message = "이름을 입력해주세요.")
     private String name; // 이름
 
-    @NotBlank(message = "input position")
+    @NotBlank(message = "직책을 입력해주세요.")
     private String position; // 직책
 
-    @NotBlank(message = "input team")
+    @NotBlank(message = "부서명을 입력해주세요.")
     private String team; // 부서명
 
 }

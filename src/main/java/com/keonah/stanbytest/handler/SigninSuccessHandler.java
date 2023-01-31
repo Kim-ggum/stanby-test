@@ -22,6 +22,9 @@ public class SigninSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/plain; charset=UTF-8");
+
         String id = authentication.getName();
         String accessToken = jwtService.createAccessToken(id);
         String refreshToken = jwtService.createRefreshToken(id);
@@ -36,6 +39,6 @@ public class SigninSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         }
 
 
-        response.getWriter().write("success!!");
+        response.getWriter().write("로그인 성공.");
     }
 }
