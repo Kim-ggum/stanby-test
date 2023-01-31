@@ -5,6 +5,7 @@ import com.keonah.stanbytest.dto.ExpenditureListDto;
 import com.keonah.stanbytest.service.ExpenditureService;
 import com.keonah.stanbytest.service.MoneyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,9 +33,9 @@ public class ExpenditureController {
     }
 
     @GetMapping("")
-    public ResponseEntity getExpenditureList(@Valid @RequestBody ExpenditureListDto expenditureListDto) {
+    public ResponseEntity getExpenditureList(@Valid @RequestBody ExpenditureListDto expenditureListDto, Pageable pageable) {
 
-        return new ResponseEntity(expenditureService.getExpenditureList(expenditureListDto), HttpStatus.OK);
+        return new ResponseEntity(expenditureService.getExpenditureList(expenditureListDto, pageable), HttpStatus.OK);
 
     }
 }

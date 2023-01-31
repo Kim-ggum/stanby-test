@@ -7,6 +7,8 @@ import com.keonah.stanbytest.entity.MemberEntity;
 import com.keonah.stanbytest.repository.MemberRepository;
 import com.keonah.stanbytest.service.MoneyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,8 +38,8 @@ public class MoneyController {
     }
 
     @GetMapping("")
-    public ResponseEntity getMoneyList(@Valid @RequestBody MoneyListDto moneyListDto) {
-        return new ResponseEntity(moneyService.getMoneyList(moneyListDto), HttpStatus.OK);
+    public ResponseEntity getMoneyList(@Valid @RequestBody MoneyListDto moneyListDto, Pageable pageable) {
+        return new ResponseEntity(moneyService.getMoneyList(moneyListDto, pageable), HttpStatus.OK);
     }
 
     @GetMapping("/all")

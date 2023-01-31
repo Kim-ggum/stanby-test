@@ -5,8 +5,8 @@ import lombok.Getter;
 @Getter
 public class ExpenditureListDto {
 
-    String startDate;
+    private String startDate;
 
-    String endDate;
+    private String endDate;
 
 }

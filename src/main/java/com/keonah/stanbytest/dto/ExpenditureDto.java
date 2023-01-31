@@ -9,11 +9,11 @@ import javax.validation.constraints.NotNull;
 public class ExpenditureDto {
 
     @NotBlank(message = "input purpose")
-    String purpose;
+    private String purpose;
 
     @NotNull(message = "input amount")
-    Long amount;
+    private Long amount;
 
     @NotBlank(message = "input date")
-    String date;
+    private String date;
 }

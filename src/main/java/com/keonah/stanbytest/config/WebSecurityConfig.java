@@ -45,7 +45,7 @@ public class WebSecurityConfig {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/admins","/admins/signin").permitAll() // 인증없이 사용 가능
-                .anyRequest().authenticated();
+                .anyRequest().permitAll();
 
         http.addFilterAfter(jsonIdPwAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(jwtAuthenticationProcessingFilter(), JsonIdPwAuthenticationFilter.class);

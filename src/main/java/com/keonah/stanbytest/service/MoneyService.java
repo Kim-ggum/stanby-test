@@ -3,13 +3,14 @@ package com.keonah.stanbytest.service;
 import com.keonah.stanbytest.dto.MoneyInputDto;
 import com.keonah.stanbytest.dto.MoneyListDto;
 import com.keonah.stanbytest.entity.MoneyEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 
 public interface MoneyService {
     void inputMoney(MoneyInputDto moneyInputDto);
 
-    List<MoneyEntity> getMoneyList(MoneyListDto moneyListDto);
+    Page<MoneyEntity> getMoneyList(MoneyListDto moneyListDto, Pageable pageable);
 
     Long getMoney();
 }

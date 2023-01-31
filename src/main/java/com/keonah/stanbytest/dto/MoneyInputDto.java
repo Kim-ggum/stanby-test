@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 public class MoneyInputDto {
 
-    @NotNull(message = "input member")
+    @NotBlank(message = "input member")
     private String member;
 
     @NotNull(message = "input amount")

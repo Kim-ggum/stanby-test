@@ -8,16 +8,12 @@ import com.keonah.stanbytest.repository.ExpenditureRepository;
 import com.keonah.stanbytest.repository.MemberRepository;
 import com.keonah.stanbytest.repository.MoneyRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +36,7 @@ public class MoneyServiceImpl implements MoneyService{
     }
 
     @Override
-    public List<MoneyEntity> getMoneyList(MoneyListDto moneyListDto) {
+    public Page<MoneyEntity> getMoneyList(MoneyListDto moneyListDto, Pageable pageable) {
 
         LocalDate startDate;
         LocalDate endDate;
@@ -58,9 +54,9 @@ public class MoneyServiceImpl implements MoneyService{
         }
 
         if(moneyListDto.getMember() != null) {
-            return moneyRepository.findAllByCreatedDateBetweenAndMember(startDate, endDate, moneyListDto.getMember());
+            return moneyRepository.findAllByCreatedDateBetweenAndMember(startDate, endDate, moneyListDto.getMember(), pageable);
         } else {
-            return moneyRepository.findAllByCreatedDateBetween(startDate, endDate);
+            return moneyRepository.findAllByCreatedDateBetween(startDate, endDate, pageable);
         }
 
     }

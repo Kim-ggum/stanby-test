@@ -5,6 +5,8 @@ import com.keonah.stanbytest.dto.ExpenditureListDto;
 import com.keonah.stanbytest.entity.ExpenditureEntity;
 import com.keonah.stanbytest.repository.ExpenditureRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -29,7 +31,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
     }
 
     @Override
-    public List<ExpenditureEntity> getExpenditureList(ExpenditureListDto expenditureListDto) {
+    public Page<ExpenditureEntity> getExpenditureList(ExpenditureListDto expenditureListDto, Pageable pageable) {
         LocalDate startDate;
         LocalDate endDate;
 
@@ -45,7 +47,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
             endDate = LocalDate.parse(expenditureListDto.getEndDate(), DateTimeFormatter.ofPattern("yyyy.MM.dd"));
         }
 
-        return expenditureRepository.findAllByDateBetween(startDate, endDate);
+        return expenditureRepository.findAllByDateBetween(startDate, endDate, pageable);
 
     }
 
