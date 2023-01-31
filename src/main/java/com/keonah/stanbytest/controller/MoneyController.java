@@ -23,6 +23,7 @@ public class MoneyController {
     private final MoneyService moneyService;
     private final MemberRepository memberRepository;
 
+    // 회비 입금 (POST /money)
     @PostMapping("")
     public ResponseEntity inputMoney(@Valid @RequestBody MoneyInputDto moneyInputDto) {
 
@@ -37,12 +38,14 @@ public class MoneyController {
 
     }
 
+    // 입금 내역 조회 (GET /money)
     @GetMapping("")
     public ResponseEntity getMoneyList(@Valid @RequestBody MoneyListDto moneyListDto, Pageable pageable) {
         return new ResponseEntity(moneyService.getMoneyList(moneyListDto, pageable), HttpStatus.OK);
     }
 
-    @GetMapping("/all")
+    // 잔액 조회 (GET /money/total)
+    @GetMapping("/total")
     public ResponseEntity getMoney() {
         return new ResponseEntity(moneyService.getMoney(), HttpStatus.OK);
     }

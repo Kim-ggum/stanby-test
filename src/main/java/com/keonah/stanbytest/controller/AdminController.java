@@ -17,6 +17,7 @@ import javax.validation.Valid;
 public class AdminController {
     private final AdminService adminService;
 
+    // 관리자 계정 회원가입 (POST /admins)
     @PostMapping("")
     public ResponseEntity signup(@Valid @RequestBody SignupDto signupDto) {
 

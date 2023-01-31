@@ -20,6 +20,7 @@ public class ExpenditureController {
     private final MoneyService moneyService;
     private final ExpenditureService expenditureService;
 
+    // 회비 사용내역 저장 (POST /expenditure)
     @PostMapping("")
     public ResponseEntity inputExpenditure(@Valid @RequestBody ExpenditureDto expenditureDto) {
         if(moneyService.getMoney() < expenditureDto.getAmount()) {
@@ -32,6 +33,7 @@ public class ExpenditureController {
 
     }
 
+    // 회비 사용내역 조회 (GET /expenditure)
     @GetMapping("")
     public ResponseEntity getExpenditureList(@Valid @RequestBody ExpenditureListDto expenditureListDto, Pageable pageable) {
 

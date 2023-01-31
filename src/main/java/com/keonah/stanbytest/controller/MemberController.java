@@ -19,6 +19,7 @@ public class MemberController {
     private final MemberService memberService;
     private final MemberRepository memberRepository;
 
+    // 회원 추가 (POST /members)
     @PostMapping("")
     public ResponseEntity createMember(@Valid @RequestBody MemberCreateDto memberCreateDto) {
         if(!memberService.checkNameAndTeamDuplication(memberCreateDto.getName(), memberCreateDto.getTeam())) {
@@ -34,6 +35,7 @@ public class MemberController {
 
     }
 
+    // 회원 정보 수정 (PUT /members/{no})
     @PutMapping("/{no}")
     public ResponseEntity updateMember(@PathVariable String no, @Valid @RequestBody MemberUpdateDto memberUpdateDto) {
         if(!memberService.checkNameAndTeamDuplication(memberUpdateDto.getName(), memberUpdateDto.getTeam())) {
@@ -45,6 +47,7 @@ public class MemberController {
 
     }
 
+    // 회원 삭제 (DELETE /members/{no})
     @DeleteMapping("/{no}")
     public ResponseEntity deleteMember(@PathVariable String no) {
         if(memberRepository.findByNo(no) != null) {
@@ -56,6 +59,7 @@ public class MemberController {
 
     }
 
+    // 회원 목록 조회 (GET /members)
     @GetMapping("")
     public ResponseEntity getMemberList() {
         return new ResponseEntity (memberService.memberList(), HttpStatus.OK);
