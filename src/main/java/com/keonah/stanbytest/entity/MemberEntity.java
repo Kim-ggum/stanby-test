@@ -19,7 +19,7 @@ public class MemberEntity extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long no; // 사원 번호
+    private Long no;
 
     @Column(length = 5, nullable = false)
     private String id; // 사원 번호
