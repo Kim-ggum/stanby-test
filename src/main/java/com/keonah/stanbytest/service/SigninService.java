@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class SigninService implements UserDetailsService {
+
     private final AdminRepository adminRepository;
 
     @Override
@@ -19,9 +20,10 @@ public class SigninService implements UserDetailsService {
         AdminEntity admin = adminRepository.findById(id);
 
         if(admin == null) {
-            throw new UsernameNotFoundException("ID does not exist.");
+            throw new UsernameNotFoundException("존재하지 않는 회원입니다.");
         }
 
         return admin;
     }
+
 }

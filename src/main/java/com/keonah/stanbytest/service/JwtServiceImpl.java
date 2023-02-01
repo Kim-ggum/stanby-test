@@ -1,7 +1,5 @@
 package com.keonah.stanbytest.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.keonah.stanbytest.repository.AdminRepository;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -95,4 +93,5 @@ public class JwtServiceImpl implements JwtService{
     public void setRefreshTokenHeader(HttpServletResponse httpServletResponse, String refreshToken) {
         httpServletResponse.setHeader(refreshHeader, refreshToken);
     }
+
 }

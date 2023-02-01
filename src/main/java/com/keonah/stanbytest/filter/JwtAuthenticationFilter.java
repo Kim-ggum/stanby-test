@@ -1,7 +1,6 @@
 package com.keonah.stanbytest.filter;
 
 import com.keonah.stanbytest.entity.AdminEntity;
-import com.keonah.stanbytest.entity.Role;
 import com.keonah.stanbytest.repository.AdminRepository;
 import com.keonah.stanbytest.service.JwtService;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +37,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String refreshToken = jwtService.extractRefreshToken(request);
 
-        if(refreshToken != null && jwtService.validateToken(refreshToken)){
+        if(refreshToken != null){
             checkRefreshTokenAndRecreateAccessToken(response, refreshToken);
         }
 
@@ -90,10 +89,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private void checkRefreshTokenAndRecreateAccessToken(HttpServletResponse response, String refreshToken) throws IOException {
 
-        AdminEntity adminEntity = adminRepository.findByRefreshToken(refreshToken);
+        if(jwtService.validateToken(refreshToken)) {
+            AdminEntity adminEntity = adminRepository.findByRefreshToken(refreshToken);
 
-        if(adminEntity != null) {
-            jwtService.setAccessTokenHeader(response, jwtService.createAccessToken(adminEntity.getUsername()));
+            if (adminEntity != null) {
+                jwtService.setAccessTokenHeader(response, jwtService.createAccessToken(adminEntity.getUsername()));
+                saveAuthentication(adminEntity);
+            }
         }
     }
 }

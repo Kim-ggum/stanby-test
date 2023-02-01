@@ -1,23 +1,20 @@
 package com.keonah.stanbytest.service;
 
-import com.keonah.stanbytest.dto.MoneyInputDto;
-import com.keonah.stanbytest.dto.MoneyListDto;
+import com.keonah.stanbytest.mapping.MoneyInfoMapping;
+import com.keonah.stanbytest.dto.MoneyInputDTO;
+import com.keonah.stanbytest.dto.MoneyListDTO;
 import com.keonah.stanbytest.entity.MemberEntity;
 import com.keonah.stanbytest.entity.MoneyEntity;
 import com.keonah.stanbytest.repository.ExpenditureRepository;
 import com.keonah.stanbytest.repository.MemberRepository;
 import com.keonah.stanbytest.repository.MoneyRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,11 +25,10 @@ public class MoneyServiceImpl implements MoneyService{
     private final ExpenditureRepository expenditureRepository;
 
     @Override
-    public void inputMoney(MoneyInputDto moneyInputDto) {
-        MemberEntity memberEntity = memberRepository.findByNo(moneyInputDto.getMember());
+    public void inputMoney(MoneyInputDTO moneyInputDto) {
 
         MoneyEntity moneyEntity = MoneyEntity.builder()
-                .member(memberEntity.getNo())
+                .member(moneyInputDto.getMember())
                 .amount(moneyInputDto.getAmount())
                 .build();
 
@@ -40,7 +36,7 @@ public class MoneyServiceImpl implements MoneyService{
     }
 
     @Override
-    public List<MoneyEntity> getMoneyList(MoneyListDto moneyListDto) {
+    public Page<MoneyInfoMapping> getMoneyList(MoneyListDTO moneyListDto, Pageable pageable) {
 
         LocalDate startDate;
         LocalDate endDate;
@@ -58,9 +54,9 @@ public class MoneyServiceImpl implements MoneyService{
         }
 
         if(moneyListDto.getMember() != null) {
-            return moneyRepository.findAllByCreatedDateBetweenAndMember(startDate, endDate, moneyListDto.getMember());
+            return moneyRepository.findAllByCreatedDateBetweenAndMemberOrderByCreatedDate(startDate, endDate, moneyListDto.getMember(), pageable);
         } else {
-            return moneyRepository.findAllByCreatedDateBetween(startDate, endDate);
+            return moneyRepository.findAllByCreatedDateBetweenOrderByCreatedDate(startDate, endDate, pageable);
         }
 
     }

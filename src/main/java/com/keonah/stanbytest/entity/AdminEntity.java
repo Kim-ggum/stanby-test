@@ -19,7 +19,7 @@ public class AdminEntity extends BaseEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long no; // 회원 번호
+    private long no;
 
     @Column(length = 255, nullable = false)
     private String id; // 아이디, 이메일 형식

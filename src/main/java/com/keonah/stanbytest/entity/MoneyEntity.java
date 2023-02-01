@@ -20,9 +20,9 @@ public class MoneyEntity extends BaseEntity{
     private Long no;
 
     @Column(length = 5, nullable = false)
-    private String member;
+    private String member; // 회원 (사원 번호)
 
     @Column(nullable = false)
-    private Long amount;
+    private Long amount; // 금액
 
 }

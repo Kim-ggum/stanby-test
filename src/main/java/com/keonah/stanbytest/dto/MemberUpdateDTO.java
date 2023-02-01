@@ -7,15 +7,16 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Getter
-public class MemberUpdateDto {
+public class MemberUpdateDTO {
 
-    @NotBlank(message = "input name")
+    // 회원 정보 수정을 위한 DTO
+    @NotBlank(message = "이름을 입력해주세요.")
     private String name; // 이름
 
-    @NotBlank(message = "input position")
+    @NotBlank(message = "직책을 입력해주세요.")
     private String position; // 직책
 
-    @NotBlank(message = "input team")
+    @NotBlank(message = "부서명을 입력해주세요.")
     private String team; // 부서명
 
 }

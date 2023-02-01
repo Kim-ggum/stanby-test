@@ -7,12 +7,13 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Getter
-public class MoneyInputDto {
+public class MoneyInputDTO {
 
-    @NotNull(message = "input member")
+    // 회비 입금을 위한 DTO
+    @NotBlank(message = "사원번호를 입력해주세요.")
     private String member;
 
-    @NotNull(message = "input amount")
+    @NotNull(message = "금액을 입력해주세요.")
     private Long amount;
 
 }

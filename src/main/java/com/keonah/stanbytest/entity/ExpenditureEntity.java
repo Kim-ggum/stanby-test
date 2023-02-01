@@ -21,12 +21,12 @@ public class ExpenditureEntity {
     Long no;
 
     @Column(nullable = false)
-    String purpose;
+    String purpose; // 사용 목적
 
     @Column(nullable = false)
-    Long amount;
+    Long amount; // 사용 금액
 
     @Column(nullable = false)
-    LocalDate date;
+    LocalDate date; // 사용일
 
 }
