@@ -26,10 +26,9 @@ public class MoneyServiceImpl implements MoneyService{
 
     @Override
     public void inputMoney(MoneyInputDTO moneyInputDto) {
-        MemberEntity memberEntity = memberRepository.findByNo(moneyInputDto.getMember());
 
         MoneyEntity moneyEntity = MoneyEntity.builder()
-                .member(memberEntity.getNo())
+                .member(moneyInputDto.getMember())
                 .amount(moneyInputDto.getAmount())
                 .build();
 
@@ -55,9 +54,9 @@ public class MoneyServiceImpl implements MoneyService{
         }
 
         if(moneyListDto.getMember() != null) {
-            return moneyRepository.findAllByCreatedDateBetweenAndMember(startDate, endDate, moneyListDto.getMember(), pageable);
+            return moneyRepository.findAllByCreatedDateBetweenAndMemberOrderByCreatedDate(startDate, endDate, moneyListDto.getMember(), pageable);
         } else {
-            return moneyRepository.findAllByCreatedDateBetween(startDate, endDate, pageable);
+            return moneyRepository.findAllByCreatedDateBetweenOrderByCreatedDate(startDate, endDate, pageable);
         }
 
     }

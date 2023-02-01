@@ -25,7 +25,7 @@ public class MoneyController {
     @PostMapping("")
     public ResponseEntity inputMoney(@Valid @RequestBody MoneyInputDTO moneyInputDto) {
 
-        MemberEntity memberEntity = memberRepository.findByNo(moneyInputDto.getMember());
+        MemberEntity memberEntity = memberRepository.findById(moneyInputDto.getMember());
 
         if(memberEntity == null) {
             return new ResponseEntity("존재하지 않는 회원입니다.", HttpStatus.BAD_REQUEST);

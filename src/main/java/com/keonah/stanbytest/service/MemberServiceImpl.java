@@ -19,7 +19,7 @@ public class MemberServiceImpl implements MemberService{
     private MemberEntity dtoToEntity(MemberCreateDTO memberCreateDto) {
 
         MemberEntity memberEntity = MemberEntity.builder()
-                    .no(memberCreateDto.getNo())
+                    .id(memberCreateDto.getId())
                     .name(memberCreateDto.getName())
                     .position(memberCreateDto.getPosition())
                     .team(memberCreateDto.getTeam())
@@ -39,14 +39,15 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public void updateMember(String no, MemberUpdateDTO memberUpdateDto) {
+    public void updateMember(String id, MemberUpdateDTO memberUpdateDto) {
 
         MemberEntity memberEntity = MemberEntity.builder()
-                .no(no)
+                .no(memberRepository.findById(id).getNo())
+                .id(id)
                 .name(memberUpdateDto.getName())
                 .position(memberUpdateDto.getPosition())
                 .team(memberUpdateDto.getTeam())
-                .joinDate(memberRepository.findByNo(no).getJoinDate())
+                .joinDate(memberRepository.findById(id).getJoinDate())
                 .build();
 
         // 사원 번호와 입사일 수정 불가능하게
@@ -55,13 +56,13 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public void deleteMember(String no) {
-        memberRepository.delete(memberRepository.findByNo(no));
+    public void deleteMember(String id) {
+        memberRepository.delete(memberRepository.findById(id));
     }
 
     @Override
     public List<MemberEntity> memberList() {
-        return memberRepository.findAll(Sort.by("no"));
+        return memberRepository.findAll(Sort.by("id"));
     }
 
     @Override

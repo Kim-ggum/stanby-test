@@ -18,8 +18,11 @@ import java.util.Date;
 public class MemberEntity extends BaseEntity{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long no; // 사원 번호
+
     @Column(length = 5, nullable = false)
-    private String no; // 사원 번호
+    private String id; // 사원 번호
 
     @Column(length = 30, nullable = false)
     private String name; // 이름

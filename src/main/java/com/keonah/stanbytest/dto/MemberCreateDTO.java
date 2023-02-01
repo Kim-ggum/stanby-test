@@ -16,7 +16,7 @@ public class MemberCreateDTO {
     // 회원 추가를 위한 DTO
     @NotBlank(message = "사원 번호를 입력해주세요.")
     @Pattern(regexp = "[0-9]{5}", message = "올바른 형식으로 입력해주세요.")
-    private String no; // 사원번호
+    private String id; // 사원번호
 
     @NotBlank(message = "이름을 입력해주세요.")
     private String name; // 이름

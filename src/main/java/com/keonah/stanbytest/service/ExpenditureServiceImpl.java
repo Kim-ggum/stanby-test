@@ -47,7 +47,7 @@ public class ExpenditureServiceImpl implements ExpenditureService {
             endDate = LocalDate.parse(expenditureListDto.getEndDate(), DateTimeFormatter.ofPattern("yyyy.MM.dd"));
         }
 
-        return expenditureRepository.findAllByDateBetween(startDate, endDate, pageable);
+        return expenditureRepository.findAllByDateBetweenOrderByDate(startDate, endDate, pageable);
 
     }
 

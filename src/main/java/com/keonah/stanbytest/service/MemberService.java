@@ -9,8 +9,8 @@ import java.util.List;
 public interface MemberService {
 
     void createMember(MemberCreateDTO memberCreateDto);
-    void updateMember(String no, MemberUpdateDTO memberUpdateDto);
-    void deleteMember(String no);
+    void updateMember(String id, MemberUpdateDTO memberUpdateDto);
+    void deleteMember(String id);
 
     List<MemberEntity> memberList();
 
